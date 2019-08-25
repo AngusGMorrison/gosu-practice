@@ -1,8 +1,8 @@
 class Star
     attr_reader :x, :y
 
-    def initialize(animation)
-        @animation = animation
+    def initialize
+        @animation = Gosu::Image.load_tiles("media/star.png", 25, 25)
         @color = Gosu::Color::BLACK.dup
         @color.red = generate_color()
         @color.green = generate_color()

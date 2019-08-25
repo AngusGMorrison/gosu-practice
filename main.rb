@@ -14,7 +14,7 @@ class Tutorial < Gosu::Window
         @player = Player::Player.new(Settings::NEW_PLAYER_X, Settings::NEW_PLAYER_Y)
 
         #Loads and divides an image into an array of equally sized tiles
-        @star_anim = Gosu::Image.load_tiles("media/star.png", 25, 25)
+        #@star_anim = Gosu::Image.load_tiles("media/star.png", 25, 25)
         @stars = Settings::STARTING_STARS
 
         @font = Settings::SCORE_FONT
@@ -23,10 +23,10 @@ class Tutorial < Gosu::Window
     #Called 60 times per second by default
     #Should contain the main game logic
     def update
+        generate_stars
         check_input
         @player.move
         @player.collect_stars(@stars)
-        generate_stars
     end
 
     #Called 60 times per second by default. May be skipped for performance reasons
@@ -62,9 +62,10 @@ class Tutorial < Gosu::Window
 
     def generate_stars
         if rand(100) < Settings::STAR_FREQUENCY && @stars.size < Settings::STAR_LIMIT
-            @stars << Star.new(@star_anim)
+            @stars << Star.new
         end
     end
+    
 end
 
 
