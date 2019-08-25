@@ -65,7 +65,7 @@ class Tutorial < Gosu::Window
             @stars << Star.new
         end
     end
-    
+
 end
 
 
