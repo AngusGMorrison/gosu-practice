@@ -23,15 +23,7 @@ class Tutorial < Gosu::Window
     #Called 60 times per second by default
     #Should contain the main game logic
     def update
-        if Gosu.button_down?(Gosu::KB_LEFT) || Gosu::button_down?(Gosu::GP_LEFT)
-            @player.turn_left
-        end
-        if Gosu.button_down?(Gosu::KB_RIGHT) || Gosu::button_down?(Gosu::GP_RIGHT)
-            @player.turn_right
-        end
-        if Gosu.button_down?(Gosu::KB_UP) || Gosu::button_down?(Gosu::GP_BUTTON_0)
-            @player.accelerate
-        end
+        check_input
         @player.move
         @player.collect_stars(@stars)
         generate_stars
@@ -45,6 +37,18 @@ class Tutorial < Gosu::Window
         @background_image.draw(0, 0, ZOrder::BACKGROUND)
         @stars.each { | star | star.draw }
         @font.draw("Score: #{@player.score}", Settings::SCORE_X, Settings::SCORE_Y, ZOrder::UI, 1.0, 1.0, Settings::SCORE_COLOR)
+    end
+
+    def check_input
+        if Gosu.button_down?(Gosu::KB_LEFT) || Gosu::button_down?(Gosu::GP_LEFT)
+            @player.turn_left
+        end
+        if Gosu.button_down?(Gosu::KB_RIGHT) || Gosu::button_down?(Gosu::GP_RIGHT)
+            @player.turn_right
+        end
+        if Gosu.button_down?(Gosu::KB_UP) || Gosu::button_down?(Gosu::GP_BUTTON_0)
+            @player.accelerate
+        end
     end
 
     def button_down(id)
