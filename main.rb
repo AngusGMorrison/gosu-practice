@@ -1,14 +1,15 @@
 require 'gosu'
 require './zorder'
+require './settings'
 
 class Tutorial < Gosu::Window
     def initialize()
-        super(640, 480)
-        self.caption = "Tutorial Game"
+        super(Settings::WINDOW_WIDTH, Settings::WINDOW_HEIGHT)
+        self.caption = Settings::CAPTION
 
-        @background_image = Gosu::Image.new("media/space.png", tileable: true)
+        @background_image = Settings::BACKGROUND
 
-        @player = Player.new(320, 240)
+        @player = Player.new(Settings::NEW_PLAYER_X, Settings::NEW_PLAYER_Y)
 
         #Loads and divides an image into an array of equally sized tiles
         @star_anim = Gosu::Image.load_tiles("media/star.png", 25, 25)
