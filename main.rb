@@ -8,8 +8,7 @@ class Tutorial < Gosu::Window
 
         @background_image = Gosu::Image.new("media/space.png", tileable: true)
 
-        @player = Player.new
-        @player.warp(320, 240)
+        @player = Player.new(320, 240)
 
         #Loads and divides an image into an array of equally sized tiles
         @star_anim = Gosu::Image.load_tiles("media/star.png", 25, 25)
@@ -65,15 +64,13 @@ end
 class Player
     attr_reader :score
 
-    def initialize
+    def initialize(x, y)
         @image = Gosu::Image.new("media/starfighter.bmp")
         @beep = Gosu::Sample.new("media/beep.wav")
-        @x = @y = @vel_x = @vel_y = @angle = 0.0
+        @x = x 
+        @y = y 
+        @vel_x = @vel_y = @angle = 0.0
         @score = 0
-    end
-
-    def warp(x, y)
-        @x, @y = x, y 
     end
 
     def turn_left
